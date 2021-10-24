@@ -23,7 +23,11 @@ const hide = (elem) => {
 };
 
 // activeNote is used to keep track of the note in the textarea
-let activeNote = {};
+let activeNote = {
+  // id: 0,
+  // title: noteTitle.value,
+  // text: noteText.value
+};
 
 const getNotes = () =>
   fetch('/api/notes', {
@@ -54,6 +58,7 @@ const renderActiveNote = () => {
   hide(saveNoteBtn);
 
   if (activeNote.id) {
+    //show(saveNoteBtn);
     noteTitle.setAttribute('readonly', true);
     noteText.setAttribute('readonly', true);
     noteTitle.value = activeNote.title;
@@ -177,7 +182,9 @@ if (window.location.pathname === '/notes') {
   saveNoteBtn.addEventListener('click', handleNoteSave);
   newNoteBtn.addEventListener('click', handleNewNoteView);
   noteTitle.addEventListener('keyup', handleRenderSaveBtn);
+  //console.log(noteTitle.addEventListener('keyup', handleRenderSaveBtn))
   noteText.addEventListener('keyup', handleRenderSaveBtn);
+  //console.log(noteText.addEventListener('keyup', handleRenderSaveBtn))
 }
 
 getAndRenderNotes();
